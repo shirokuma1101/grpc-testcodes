@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 
 #include <grpcpp/ext/proto_server_reflection_plugin.h>
