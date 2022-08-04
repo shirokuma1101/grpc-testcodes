@@ -1,0 +1,19 @@
+/* バージョン */
+syntax = "proto3";
+
+/* パッケージ */
+
+/* インポート */
+
+/* サービス */
+service Chat {
+  /* RPC */
+  rpc ChatStream(stream ChatDetail) returns (stream ChatDetail) {}
+}
+
+/* メッセージ型 */
+message ChatDetail {
+  /* メンバ変数 */
+  string name = 1;
+  string text = 2;
+}
