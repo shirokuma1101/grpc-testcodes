@@ -1,27 +1,27 @@
-/* �o�[�W���� */
+/* バージョン */
 syntax = "proto3";
 
-/* �p�b�P�[�W */
-// ���O�̏Փˉ��(���O���)
+/* パッケージ */
+// 名前の衝突回避(名前空間)
 package quick_start;
 
-/* �C���|�[�g */
-// ����.proto�Œ�`�������b�Z�[�W�^���d�l����ꍇ
+/* インポート */
+// 他の.protoで定義したメッセージ型を仕様する場合
 //import "hoge.proto";
 
-/* �T�[�r�X */
-// RPC�̃C���^�[�t�F�[�X�̏W����
+/* サービス */
+// RPCのインターフェースの集合体
 service QuickStartServices {
   /* RPC */
-  // RPC�̃C���^�[�t�F�[�X���`
+  // RPCのインターフェースを定義
   rpc SayHello (HelloRequest) returns (HelloResponse) {}
 }
 
-/* ���b�Z�[�W�^ */
-// �\���̂�N���X�Ƃ��ď����o�����
+/* メッセージ型 */
+// 構造体やクラスとして書き出される
 message HelloRequest {
-  /* �����o�ϐ� */
-  // ���̐����̓^�O�i���o�[�Ń��b�Z�[�W�^���ň�ӂł���K�v������
+  /* メンバ変数 */
+  // 後ろの数字はタグナンバーでメッセージ型内で一意である必要がある
   string prefix = 1;
   string message = 2;
 }
@@ -32,21 +32,21 @@ message HelloResponse {
 
 /* note */
 
-// proto�̌^��C++���ł̌^
+// protoの型とC++側での型
 // proto    | C++
 //----------|--------|
 // double   | double |
 // float    | float  |
-// int32    | int32  | �ϒ��G���R�[�f�B���O ���̐��l�̏ꍇ�͔���� sint32����
-// int64    | int64  | �ϒ��G���R�[�f�B���O ���̐��l�̏ꍇ�͔���� sint64����
-// uint32   | uint32 | �ϒ��G���R�[�f�B���O
-// uint64   | uint64 | �ϒ��G���R�[�f�B���O
-// sint32   | int32  | �ϒ��G���R�[�f�B���O �����I�ɕ��̐��l���G���R�[�h
-// sint64   | int64  | �ϒ��G���R�[�f�B���O �����I�ɕ��̐��l���G���R�[�h
-// fixed32  | uint32 | ���4�o�C�g
-// fixed64  | uint64 | ���8�o�C�g
-// sfixed32 | int32  | ���4�o�C�g
-// sfixed64 | int64  | ���8�o�C�g
+// int32    | int32  | 可変長エンコーディング 負の数値の場合は非効率 sint32推奨
+// int64    | int64  | 可変長エンコーディング 負の数値の場合は非効率 sint64推奨
+// uint32   | uint32 | 可変長エンコーディング
+// uint64   | uint64 | 可変長エンコーディング
+// sint32   | int32  | 可変長エンコーディング 効率的に負の数値をエンコード
+// sint64   | int64  | 可変長エンコーディング 効率的に負の数値をエンコード
+// fixed32  | uint32 | 常に4バイト
+// fixed64  | uint64 | 常に8バイト
+// sfixed32 | int32  | 常に4バイト
+// sfixed64 | int64  | 常に8バイト
 // bool     | bool   |
-// string   | string | 2^32�����̏��UTF-8�܂���7�r�b�gASCII�ł���K�v������
-// bytes    | string | 2^32�����̔C�ӂ̃o�C�g�V�[�P���X���܂߂邱�Ƃ��ł���
+// string   | string | 2^32未満の常にUTF-8または7ビットASCIIである必要がある
+// bytes    | string | 2^32未満の任意のバイトシーケンスを含めることができる
