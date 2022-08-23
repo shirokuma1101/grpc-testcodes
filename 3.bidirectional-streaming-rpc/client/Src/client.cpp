@@ -51,10 +51,6 @@ private:
 
 int main() {
     // コマンドライン引数
-    std::string argv = wide_to_sjis(GetCommandLine());
-    const char* cargv = argv.c_str();
-    auto ccargv = const_cast<const char* const*>(&cargv);
-
     boost::program_options::options_description desc("options");
     desc.add_options()
         ("name,n", boost::program_options::value<std::string>()->default_value("anonymous"), "client name")
