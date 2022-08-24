@@ -2,7 +2,7 @@
 // If you make any local change, they will be lost.
 // source: quick-start.proto
 // Original file comments:
-// ƒo[ƒWƒ‡ƒ“ 
+// ãƒãƒ¼ã‚¸ãƒ§ãƒ³ 
 #ifndef GRPC_quick_2dstart_2eproto__INCLUDED
 #define GRPC_quick_2dstart_2eproto__INCLUDED
 
@@ -29,14 +29,14 @@
 
 namespace quick_start {
 
-// ƒCƒ“ƒ|[ƒg 
+// ã‚¤ãƒ³ãƒãƒ¼ãƒˆ 
 //
-// ‘¼‚Ì.proto‚Å’è‹`‚µ‚½ƒƒbƒZ[ƒWŒ^‚ğd—l‚·‚éê‡
+// ä»–ã®.protoã§å®šç¾©ã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‹ã‚’ä»•æ§˜ã™ã‚‹å ´åˆ
 // import "hoge.proto";
 //
-// ƒT[ƒrƒX 
+// ã‚µãƒ¼ãƒ“ã‚¹ 
 //
-// RPC‚ÌƒCƒ“ƒ^[ƒtƒF[ƒX‚ÌW‡‘Ì
+// RPCã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®é›†åˆä½“
 class QuickStartServices final {
  public:
   static constexpr char const* service_full_name() {
@@ -45,7 +45,7 @@ class QuickStartServices final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    // RPC‚ÌƒCƒ“ƒ^[ƒtƒF[ƒX‚ğ’è‹`
+    // RPCã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å®šç¾©
     virtual ::grpc::Status SayHello(::grpc::ClientContext* context, const ::quick_start::HelloRequest& request, ::quick_start::HelloResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::quick_start::HelloResponse>> AsyncSayHello(::grpc::ClientContext* context, const ::quick_start::HelloRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::quick_start::HelloResponse>>(AsyncSayHelloRaw(context, request, cq));
@@ -56,7 +56,7 @@ class QuickStartServices final {
     class async_interface {
      public:
       virtual ~async_interface() {}
-      // RPC‚ÌƒCƒ“ƒ^[ƒtƒF[ƒX‚ğ’è‹`
+      // RPCã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å®šç¾©
       virtual void SayHello(::grpc::ClientContext* context, const ::quick_start::HelloRequest* request, ::quick_start::HelloResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void SayHello(::grpc::ClientContext* context, const ::quick_start::HelloRequest* request, ::quick_start::HelloResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
@@ -103,7 +103,7 @@ class QuickStartServices final {
    public:
     Service();
     virtual ~Service();
-    // RPC‚ÌƒCƒ“ƒ^[ƒtƒF[ƒX‚ğ’è‹`
+    // RPCã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å®šç¾©
     virtual ::grpc::Status SayHello(::grpc::ServerContext* context, const ::quick_start::HelloRequest* request, ::quick_start::HelloResponse* response);
   };
   template <class BaseClass>
