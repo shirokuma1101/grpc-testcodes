@@ -1,0 +1,33 @@
+/* バージョン */
+syntax = "proto3";
+
+/* パッケージ */
+
+/* インポート */
+
+/* サービス */
+service HotReloadService {
+  /* RPC */
+  rpc GetFilePath (Request) returns (FilePath) {}
+  rpc HotReload (Request) returns (Successed) {}
+}
+
+/* メッセージ型 */
+message Request {
+  /* メンバ変数 */
+  AssetType asset_type = 1;
+  string name = 2;
+}
+
+message FilePath {
+  string file_path = 1;
+}
+
+message Successed {
+  bool successed = 1;
+}
+
+enum AssetType {
+  UNKNOWN = 0;
+  JSON = 1;
+}
