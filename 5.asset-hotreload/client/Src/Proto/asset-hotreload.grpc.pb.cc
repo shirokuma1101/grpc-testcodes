@@ -23,6 +23,7 @@
 static const char* HotReloadService_method_names[] = {
   "/HotReloadService/GetFilePath",
   "/HotReloadService/HotReload",
+  "/HotReloadService/Async_HotReload",
 };
 
 std::unique_ptr< HotReloadService::Stub> HotReloadService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -34,6 +35,7 @@ std::unique_ptr< HotReloadService::Stub> HotReloadService::NewStub(const std::sh
 HotReloadService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_GetFilePath_(HotReloadService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_HotReload_(HotReloadService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Async_HotReload_(HotReloadService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status HotReloadService::Stub::GetFilePath(::grpc::ClientContext* context, const ::Request& request, ::FilePath* response) {
@@ -82,6 +84,29 @@ void HotReloadService::Stub::async::HotReload(::grpc::ClientContext* context, co
   return result;
 }
 
+::grpc::Status HotReloadService::Stub::Async_HotReload(::grpc::ClientContext* context, const ::Request& request, ::Successed* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Request, ::Successed, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Async_HotReload_, context, request, response);
+}
+
+void HotReloadService::Stub::async::Async_HotReload(::grpc::ClientContext* context, const ::Request* request, ::Successed* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Request, ::Successed, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Async_HotReload_, context, request, response, std::move(f));
+}
+
+void HotReloadService::Stub::async::Async_HotReload(::grpc::ClientContext* context, const ::Request* request, ::Successed* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Async_HotReload_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Successed>* HotReloadService::Stub::PrepareAsyncAsync_HotReloadRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Successed, ::Request, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Async_HotReload_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Successed>* HotReloadService::Stub::AsyncAsync_HotReloadRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncAsync_HotReloadRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 HotReloadService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       HotReloadService_method_names[0],
@@ -103,6 +128,16 @@ HotReloadService::Service::Service() {
              ::Successed* resp) {
                return service->HotReload(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      HotReloadService_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< HotReloadService::Service, ::Request, ::Successed, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](HotReloadService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Request* req,
+             ::Successed* resp) {
+               return service->Async_HotReload(ctx, req, resp);
+             }, this)));
 }
 
 HotReloadService::Service::~Service() {
@@ -116,6 +151,13 @@ HotReloadService::Service::~Service() {
 }
 
 ::grpc::Status HotReloadService::Service::HotReload(::grpc::ServerContext* context, const ::Request* request, ::Successed* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status HotReloadService::Service::Async_HotReload(::grpc::ServerContext* context, const ::Request* request, ::Successed* response) {
   (void) context;
   (void) request;
   (void) response;

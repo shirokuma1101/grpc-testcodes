@@ -39,6 +39,16 @@ public:
         return successed.successed();
     }
 
+    bool HotReload(AssetType asset_type, std::string_view asset_name) {
+        ClientContext ctx;
+        Request request;
+        request.set_asset_type(asset_type);
+        request.set_name(asset_name.data());
+        Successed successed;
+        CheckStatus(m_upStub->Async_HotReload(&ctx, request, &successed));
+        return successed.successed();
+    }
+
 private:
 
     bool CheckStatus(const Status& status, std::string detail = {}) {

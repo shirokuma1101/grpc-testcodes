@@ -15,7 +15,6 @@ int main() {
     // save the file to file_path
     std::cout << file_path << std::endl;
 
-    //TODO: async
     client->HotReload(AssetType::JSON, "test");
 
     return 0;

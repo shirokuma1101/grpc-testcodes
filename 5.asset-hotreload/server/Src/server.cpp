@@ -47,6 +47,15 @@ private:
         return Status::OK;
     }
 
+    Status Async_HotReload(ServerContext* ctx, const Request* request, Successed* successed) override {
+        m_wpAssetMgr.lock()->AsyncLoad(
+            static_cast<AssetManager::AssetType>(request->asset_type()),
+            request->name()
+        );
+        successed->set_successed(true);
+        return Status::OK;
+    }
+
     std::weak_ptr<AssetManager> m_wpAssetMgr;
 
 };

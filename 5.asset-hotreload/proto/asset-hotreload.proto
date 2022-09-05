@@ -10,6 +10,7 @@ service HotReloadService {
   /* RPC */
   rpc GetFilePath (Request) returns (FilePath) {}
   rpc HotReload (Request) returns (Successed) {}
+  rpc Async_HotReload (Request) returns (Successed) {}
 }
 
 /* メッセージ型 */

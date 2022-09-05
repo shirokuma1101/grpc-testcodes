@@ -99,14 +99,15 @@ const char descriptor_table_protodef_asset_2dhotreload_2eproto[] PROTOBUF_SECTIO
   "set_type\030\001 \001(\0162\n.AssetType\022\014\n\004name\030\002 \001(\t"
   "\"\035\n\010FilePath\022\021\n\tfile_path\030\001 \001(\t\"\036\n\tSucce"
   "ssed\022\021\n\tsuccessed\030\001 \001(\010*\"\n\tAssetType\022\013\n\007"
-  "UNKNOWN\020\000\022\010\n\004JSON\020\0012]\n\020HotReloadService\022"
-  "$\n\013GetFilePath\022\010.Request\032\t.FilePath\"\000\022#\n"
-  "\tHotReload\022\010.Request\032\n.Successed\"\000b\006prot"
-  "o3"
+  "UNKNOWN\020\000\022\010\n\004JSON\020\0012\210\001\n\020HotReloadService"
+  "\022$\n\013GetFilePath\022\010.Request\032\t.FilePath\"\000\022#"
+  "\n\tHotReload\022\010.Request\032\n.Successed\"\000\022)\n\017A"
+  "sync_HotReload\022\010.Request\032\n.Successed\"\000b\006"
+  "proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_asset_2dhotreload_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_asset_2dhotreload_2eproto = {
-  false, false, 282, descriptor_table_protodef_asset_2dhotreload_2eproto, "asset-hotreload.proto", 
+  false, false, 326, descriptor_table_protodef_asset_2dhotreload_2eproto, "asset-hotreload.proto", 
   &descriptor_table_asset_2dhotreload_2eproto_once, nullptr, 0, 3,
   schemas, file_default_instances, TableStruct_asset_2dhotreload_2eproto::offsets,
   file_level_metadata_asset_2dhotreload_2eproto, file_level_enum_descriptors_asset_2dhotreload_2eproto, file_level_service_descriptors_asset_2dhotreload_2eproto,

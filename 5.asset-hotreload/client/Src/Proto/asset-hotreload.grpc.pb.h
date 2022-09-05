@@ -55,6 +55,13 @@ class HotReloadService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Successed>> PrepareAsyncHotReload(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Successed>>(PrepareAsyncHotReloadRaw(context, request, cq));
     }
+    virtual ::grpc::Status Async_HotReload(::grpc::ClientContext* context, const ::Request& request, ::Successed* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Successed>> AsyncAsync_HotReload(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Successed>>(AsyncAsync_HotReloadRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Successed>> PrepareAsyncAsync_HotReload(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Successed>>(PrepareAsyncAsync_HotReloadRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -63,6 +70,8 @@ class HotReloadService final {
       virtual void GetFilePath(::grpc::ClientContext* context, const ::Request* request, ::FilePath* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void HotReload(::grpc::ClientContext* context, const ::Request* request, ::Successed* response, std::function<void(::grpc::Status)>) = 0;
       virtual void HotReload(::grpc::ClientContext* context, const ::Request* request, ::Successed* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Async_HotReload(::grpc::ClientContext* context, const ::Request* request, ::Successed* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Async_HotReload(::grpc::ClientContext* context, const ::Request* request, ::Successed* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -72,6 +81,8 @@ class HotReloadService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::FilePath>* PrepareAsyncGetFilePathRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Successed>* AsyncHotReloadRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Successed>* PrepareAsyncHotReloadRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Successed>* AsyncAsync_HotReloadRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Successed>* PrepareAsyncAsync_HotReloadRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -90,6 +101,13 @@ class HotReloadService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Successed>> PrepareAsyncHotReload(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Successed>>(PrepareAsyncHotReloadRaw(context, request, cq));
     }
+    ::grpc::Status Async_HotReload(::grpc::ClientContext* context, const ::Request& request, ::Successed* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Successed>> AsyncAsync_HotReload(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Successed>>(AsyncAsync_HotReloadRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Successed>> PrepareAsyncAsync_HotReload(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Successed>>(PrepareAsyncAsync_HotReloadRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -97,6 +115,8 @@ class HotReloadService final {
       void GetFilePath(::grpc::ClientContext* context, const ::Request* request, ::FilePath* response, ::grpc::ClientUnaryReactor* reactor) override;
       void HotReload(::grpc::ClientContext* context, const ::Request* request, ::Successed* response, std::function<void(::grpc::Status)>) override;
       void HotReload(::grpc::ClientContext* context, const ::Request* request, ::Successed* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Async_HotReload(::grpc::ClientContext* context, const ::Request* request, ::Successed* response, std::function<void(::grpc::Status)>) override;
+      void Async_HotReload(::grpc::ClientContext* context, const ::Request* request, ::Successed* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -112,8 +132,11 @@ class HotReloadService final {
     ::grpc::ClientAsyncResponseReader< ::FilePath>* PrepareAsyncGetFilePathRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Successed>* AsyncHotReloadRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Successed>* PrepareAsyncHotReloadRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Successed>* AsyncAsync_HotReloadRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Successed>* PrepareAsyncAsync_HotReloadRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetFilePath_;
     const ::grpc::internal::RpcMethod rpcmethod_HotReload_;
+    const ::grpc::internal::RpcMethod rpcmethod_Async_HotReload_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -124,6 +147,7 @@ class HotReloadService final {
     // RPC 
     virtual ::grpc::Status GetFilePath(::grpc::ServerContext* context, const ::Request* request, ::FilePath* response);
     virtual ::grpc::Status HotReload(::grpc::ServerContext* context, const ::Request* request, ::Successed* response);
+    virtual ::grpc::Status Async_HotReload(::grpc::ServerContext* context, const ::Request* request, ::Successed* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_GetFilePath : public BaseClass {
@@ -165,7 +189,27 @@ class HotReloadService final {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetFilePath<WithAsyncMethod_HotReload<Service > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_Async_HotReload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Async_HotReload() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_Async_HotReload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Async_HotReload(::grpc::ServerContext* /*context*/, const ::Request* /*request*/, ::Successed* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestAsync_HotReload(::grpc::ServerContext* context, ::Request* request, ::grpc::ServerAsyncResponseWriter< ::Successed>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_GetFilePath<WithAsyncMethod_HotReload<WithAsyncMethod_Async_HotReload<Service > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetFilePath : public BaseClass {
    private:
@@ -220,7 +264,34 @@ class HotReloadService final {
     virtual ::grpc::ServerUnaryReactor* HotReload(
       ::grpc::CallbackServerContext* /*context*/, const ::Request* /*request*/, ::Successed* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetFilePath<WithCallbackMethod_HotReload<Service > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_Async_HotReload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Async_HotReload() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::Request, ::Successed>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Request* request, ::Successed* response) { return this->Async_HotReload(context, request, response); }));}
+    void SetMessageAllocatorFor_Async_HotReload(
+        ::grpc::MessageAllocator< ::Request, ::Successed>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Request, ::Successed>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Async_HotReload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Async_HotReload(::grpc::ServerContext* /*context*/, const ::Request* /*request*/, ::Successed* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Async_HotReload(
+      ::grpc::CallbackServerContext* /*context*/, const ::Request* /*request*/, ::Successed* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_GetFilePath<WithCallbackMethod_HotReload<WithCallbackMethod_Async_HotReload<Service > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetFilePath : public BaseClass {
@@ -252,6 +323,23 @@ class HotReloadService final {
     }
     // disable synchronous version of this method
     ::grpc::Status HotReload(::grpc::ServerContext* /*context*/, const ::Request* /*request*/, ::Successed* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Async_HotReload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Async_HotReload() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_Async_HotReload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Async_HotReload(::grpc::ServerContext* /*context*/, const ::Request* /*request*/, ::Successed* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -297,6 +385,26 @@ class HotReloadService final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_Async_HotReload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Async_HotReload() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_Async_HotReload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Async_HotReload(::grpc::ServerContext* /*context*/, const ::Request* /*request*/, ::Successed* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestAsync_HotReload(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_GetFilePath : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -338,6 +446,28 @@ class HotReloadService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* HotReload(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Async_HotReload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Async_HotReload() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Async_HotReload(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Async_HotReload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Async_HotReload(::grpc::ServerContext* /*context*/, const ::Request* /*request*/, ::Successed* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Async_HotReload(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -394,9 +524,36 @@ class HotReloadService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedHotReload(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Request,::Successed>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetFilePath<WithStreamedUnaryMethod_HotReload<Service > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Async_HotReload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Async_HotReload() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Request, ::Successed>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Request, ::Successed>* streamer) {
+                       return this->StreamedAsync_HotReload(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Async_HotReload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Async_HotReload(::grpc::ServerContext* /*context*/, const ::Request* /*request*/, ::Successed* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedAsync_HotReload(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Request,::Successed>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_GetFilePath<WithStreamedUnaryMethod_HotReload<WithStreamedUnaryMethod_Async_HotReload<Service > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetFilePath<WithStreamedUnaryMethod_HotReload<Service > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetFilePath<WithStreamedUnaryMethod_HotReload<WithStreamedUnaryMethod_Async_HotReload<Service > > > StreamedService;
 };
 
 
