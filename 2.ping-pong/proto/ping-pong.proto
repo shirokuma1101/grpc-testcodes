@@ -1,0 +1,22 @@
+/* バージョン */
+syntax = "proto3";
+
+/* パッケージ */
+
+/* インポート */
+
+/* サービス */
+service PingPong {
+  /* RPC */
+  rpc SendPing (Ping) returns (Pong) {}
+}
+
+/* メッセージ型 */
+message Ping {
+  /* メンバ変数 */
+  fixed64 time = 1;
+}
+
+message Pong {
+  fixed64 time = 1;
+}

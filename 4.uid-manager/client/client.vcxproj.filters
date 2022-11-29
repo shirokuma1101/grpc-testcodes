@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Src">
+      <UniqueIdentifier>{85203c4f-50c0-4649-9177-3cf9665e66aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{939ac38c-14cf-4f57-adf7-65227e580b0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common\protocpp">
+      <UniqueIdentifier>{35454edc-5172-45b8-ad80-5b343bd0c26f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Src\client.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\protocpp\uid-manager.grpc.pb.cc">
+      <Filter>common\protocpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\protocpp\uid-manager.pb.cc">
+      <Filter>common\protocpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\uid-manager.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\common\protocpp\uid-manager.pb.h">
+      <Filter>common\protocpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\protocpp\uid-manager.grpc.pb.h">
+      <Filter>common\protocpp</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\client.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\uid-manager.h">
+      <Filter>common</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
